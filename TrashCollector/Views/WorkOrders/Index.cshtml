@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TrashCollector.Models.WorkOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledPickup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServicePaidFor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduledPickup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServicePaidFor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

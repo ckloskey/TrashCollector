@@ -1,0 +1,58 @@
+﻿@model TrashCollector.Models.WorkOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduledPickup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScheduledPickup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicePaidFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicePaidFor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
