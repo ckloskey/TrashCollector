@@ -194,6 +194,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +235,18 @@
     <Compile Include="Migrations\201806051404561_refreshMigrations.cs" />
     <Compile Include="Migrations\201806051404561_refreshMigrations.Designer.cs">
       <DependentUpon>201806051404561_refreshMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806052154052_adding_userRolesToRegisterViewModel.cs" />
+    <Compile Include="Migrations\201806052154052_adding_userRolesToRegisterViewModel.Designer.cs">
+      <DependentUpon>201806052154052_adding_userRolesToRegisterViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806061234306_findingAnyUnmigratedProperties.cs" />
+    <Compile Include="Migrations\201806061234306_findingAnyUnmigratedProperties.Designer.cs">
+      <DependentUpon>201806061234306_findingAnyUnmigratedProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806061249428_AddingUserRoleProperty.cs" />
+    <Compile Include="Migrations\201806061249428_AddingUserRoleProperty.Designer.cs">
+      <DependentUpon>201806061249428_AddingUserRoleProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -324,6 +337,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -365,6 +379,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806051404561_refreshMigrations.resx">
       <DependentUpon>201806051404561_refreshMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806052154052_adding_userRolesToRegisterViewModel.resx">
+      <DependentUpon>201806052154052_adding_userRolesToRegisterViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061234306_findingAnyUnmigratedProperties.resx">
+      <DependentUpon>201806061234306_findingAnyUnmigratedProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061249428_AddingUserRoleProperty.resx">
+      <DependentUpon>201806061249428_AddingUserRoleProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -48,7 +48,6 @@ namespace TrashCollector.Models
 
     public class LoginViewModel
     {
-
         [Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
@@ -60,13 +59,15 @@ namespace TrashCollector.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
     }
 
     public class RegisterViewModel
     {
-                [Required]   
-        [Display(Name = "User Role")]   
-        public string UserRoles { get; set; }   
+        [Required]
+        [Display(Name = "User Role")]  
+        public string UserRoles { get; set; }
+        
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

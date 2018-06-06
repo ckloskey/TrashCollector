@@ -7,27 +7,12 @@
 <h2>Index</h2>
 
     <div class="form-horizontal">
-        <h4>Employee</h4>
+        <h4>Employee Index</h4>
         <hr />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*@foreach (var item in Model) {*@
-            @*<tr>
+ <table>
+            @*@foreach (var item in Model) {
+            <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
