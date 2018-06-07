@@ -10,6 +10,7 @@ using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
+
     public class EmployeesController : Controller
     {
         private ApplicationDbContext db;

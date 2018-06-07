@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,6 +22,7 @@ namespace TrashCollector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -50,7 +52,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Address,Login,Password,ZipCode,PickupDay,AccountBalance,NextPickup,LastPickupConfirmed")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Address,Login,Password,ZipCode,PickupDay,AccountBalance,NextPickup")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -82,16 +84,18 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,Login,Password,ZipCode,PickupDay,AccountBalance,NextPickup")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,Login,Password,ZipCode,PickupDay,AccountBalance,NextPickup,UserId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.NextPickup = AccountController.GetNextWeekday(DateTime.Today.AddDays(1), customer.PickupDay).ToString("{0:MM/dd/yyyy}");
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", customer);
             }
             return View(customer);
         }
+        
 
         // GET: Customers/Delete/5
         public ActionResult Delete(int? id)
@@ -116,7 +120,7 @@ namespace TrashCollector.Controllers
             Customer customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
         }
 
         protected override void Dispose(bool disposing)

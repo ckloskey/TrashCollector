@@ -248,6 +248,58 @@
     <Compile Include="Migrations\201806061249428_AddingUserRoleProperty.Designer.cs">
       <DependentUpon>201806061249428_AddingUserRoleProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806070150377_refreshMigrations1.cs" />
+    <Compile Include="Migrations\201806070150377_refreshMigrations1.Designer.cs">
+      <DependentUpon>201806070150377_refreshMigrations1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070156285_refreshMigrations2.cs" />
+    <Compile Include="Migrations\201806070156285_refreshMigrations2.Designer.cs">
+      <DependentUpon>201806070156285_refreshMigrations2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070245442_refreshMigrations3.cs" />
+    <Compile Include="Migrations\201806070245442_refreshMigrations3.Designer.cs">
+      <DependentUpon>201806070245442_refreshMigrations3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070258006_refreshMigrations4.cs" />
+    <Compile Include="Migrations\201806070258006_refreshMigrations4.Designer.cs">
+      <DependentUpon>201806070258006_refreshMigrations4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070301118_refreshMigrations41.cs" />
+    <Compile Include="Migrations\201806070301118_refreshMigrations41.Designer.cs">
+      <DependentUpon>201806070301118_refreshMigrations41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070303283_refreshMigrations42.cs" />
+    <Compile Include="Migrations\201806070303283_refreshMigrations42.Designer.cs">
+      <DependentUpon>201806070303283_refreshMigrations42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070310184_refreshMigrations43.cs" />
+    <Compile Include="Migrations\201806070310184_refreshMigrations43.Designer.cs">
+      <DependentUpon>201806070310184_refreshMigrations43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070320017_refreshMigrations44.cs" />
+    <Compile Include="Migrations\201806070320017_refreshMigrations44.Designer.cs">
+      <DependentUpon>201806070320017_refreshMigrations44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806070322128_refreshMigrations45.cs" />
+    <Compile Include="Migrations\201806070322128_refreshMigrations45.Designer.cs">
+      <DependentUpon>201806070322128_refreshMigrations45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071347277_refreshMigrations5.cs" />
+    <Compile Include="Migrations\201806071347277_refreshMigrations5.Designer.cs">
+      <DependentUpon>201806071347277_refreshMigrations5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071659141_changeZipFromIntToString.cs" />
+    <Compile Include="Migrations\201806071659141_changeZipFromIntToString.Designer.cs">
+      <DependentUpon>201806071659141_changeZipFromIntToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071802156_addedMultipleFieldsToRegisterViewModel.cs" />
+    <Compile Include="Migrations\201806071802156_addedMultipleFieldsToRegisterViewModel.Designer.cs">
+      <DependentUpon>201806071802156_addedMultipleFieldsToRegisterViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.cs" />
+    <Compile Include="Migrations\201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.Designer.cs">
+      <DependentUpon>201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -388,6 +440,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806061249428_AddingUserRoleProperty.resx">
       <DependentUpon>201806061249428_AddingUserRoleProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070150377_refreshMigrations1.resx">
+      <DependentUpon>201806070150377_refreshMigrations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070156285_refreshMigrations2.resx">
+      <DependentUpon>201806070156285_refreshMigrations2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070245442_refreshMigrations3.resx">
+      <DependentUpon>201806070245442_refreshMigrations3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070258006_refreshMigrations4.resx">
+      <DependentUpon>201806070258006_refreshMigrations4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070301118_refreshMigrations41.resx">
+      <DependentUpon>201806070301118_refreshMigrations41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070303283_refreshMigrations42.resx">
+      <DependentUpon>201806070303283_refreshMigrations42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070310184_refreshMigrations43.resx">
+      <DependentUpon>201806070310184_refreshMigrations43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070320017_refreshMigrations44.resx">
+      <DependentUpon>201806070320017_refreshMigrations44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070322128_refreshMigrations45.resx">
+      <DependentUpon>201806070322128_refreshMigrations45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071347277_refreshMigrations5.resx">
+      <DependentUpon>201806071347277_refreshMigrations5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071659141_changeZipFromIntToString.resx">
+      <DependentUpon>201806071659141_changeZipFromIntToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071802156_addedMultipleFieldsToRegisterViewModel.resx">
+      <DependentUpon>201806071802156_addedMultipleFieldsToRegisterViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.resx">
+      <DependentUpon>201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

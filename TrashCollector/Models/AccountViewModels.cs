@@ -64,7 +64,6 @@ namespace TrashCollector.Models
 
     public class RegisterViewModel
     {
-        [Required]
         [Display(Name = "User Role")]  
         public string UserRoles { get; set; }
         
@@ -76,7 +75,18 @@ namespace TrashCollector.Models
         [Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
-
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+        [Required]
+        [Display(Name = "ZipCode")]
+        public string ZipCode { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -18,20 +20,21 @@ namespace TrashCollector.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        ApplicationDbContext context;
+        ApplicationDbContext db;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
 
         public AccountController()
         {
-            context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+
             
         }
 
@@ -87,14 +90,15 @@ namespace TrashCollector.Controllers
             {
                 
                 case SignInStatus.Success:
-                    ApplicationUser user = await UserManager.FindAsync(model.UserName, model.Password);
+                    ApplicationUser user = UserManager.Find(model.UserName, model.Password);
+                    var customer = db.Customers.FirstOrDefault(c => c.UserId == user.Id);
                     if (user.UserRole == "Customer")
                     {
-                        return RedirectToAction("Index", "Customers");
+                        return RedirectToAction("Details", "Customers", new {id = customer.Id });
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Employees");
+                        return RedirectToAction("Details", "Employees", new { id = customer.Id });
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -106,15 +110,7 @@ namespace TrashCollector.Controllers
                     return View(model);
             }
         }
-        public IQueryable GetUserRole(string userName)
-        {
-            var role = (
-                from user in context.Users
-                where userName == user.UserName
-                select user.UserRole
-                );
-            return role;
-        }
+
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -163,7 +159,7 @@ namespace TrashCollector.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+            ViewBag.Name = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin"))
                    .ToList(), "Name", "Name");
             return View();
         }
@@ -177,11 +173,15 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
-                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleStore = new RoleStore<IdentityRole>(db);
                 var roleManager = new RoleManager<IdentityRole>(roleStore);
-
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserRole = model.UserRoles};
+                
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserRole = "Customer", FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, ZipCode = model.ZipCode};
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //if (model.UserRoles == "Customer")
+                //{
+                //    user.Customer = new Customer();
+                //}
 
                 if (result.Succeeded)
                 {
@@ -192,14 +192,52 @@ namespace TrashCollector.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    return RedirectToAction("Index", "Home");
+
+                    try
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "Customer");
+                        Customer customer = new Customer();
+                        customer.UserId = user.Id;
+                        customer.Login = user.UserName;
+                        customer.FirstName = user.FirstName;
+                        customer.LastName = user.LastName;
+                        customer.Address = user.Address;
+                        customer.ZipCode = user.ZipCode;
+                        customer.PickupDay = DayOfWeek.Monday;
+                        customer.NextPickup = GetNextWeekday(DateTime.Today.AddDays(1), DayOfWeek.Monday).ToString("{0:MM/dd/yyyy}");
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                        return RedirectToAction("Details", "Customers", new { id = customer.Id });
+                        //Login(LoginViewModel model, string returnUrl)
+                    }
+                    catch(DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                        throw;
+                    }
+                    //return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public static DateTime GetNextWeekday(DateTime start, DayOfWeek day)
+        {
+            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
+            int daysToAdd = ((int)day - (int)start.DayOfWeek + 7) % 7;
+            return start.AddDays(daysToAdd);
         }
 
         //
