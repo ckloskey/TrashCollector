@@ -34,8 +34,6 @@ namespace TrashCollector.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
-
-            
         }
 
         public ApplicationSignInManager SignInManager
@@ -91,14 +89,20 @@ namespace TrashCollector.Controllers
                 
                 case SignInStatus.Success:
                     ApplicationUser user = UserManager.Find(model.UserName, model.Password);
-                    var customer = db.Customers.FirstOrDefault(c => c.UserId == user.Id);
+                    
                     if (user.UserRole == "Customer")
                     {
+                        var customer = db.Customers.FirstOrDefault(c => c.UserId == user.Id);
                         return RedirectToAction("Details", "Customers", new {id = customer.Id });
+                    }
+                    else if (user.UserRole == "Employee")
+                    {
+                        var employee = db.Employees.FirstOrDefault(c => c.UserId == user.Id);
+                        return RedirectToAction("Details", "Employees", new { id = employee.Id });
                     }
                     else
                     {
-                        return RedirectToAction("Details", "Employees", new { id = customer.Id });
+                        return RedirectToAction("Index", "Users");
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -178,10 +182,6 @@ namespace TrashCollector.Controllers
                 
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserRole = "Customer", FirstName = model.FirstName, LastName = model.LastName, Address = model.Address, ZipCode = model.ZipCode};
                 var result = await UserManager.CreateAsync(user, model.Password);
-                //if (model.UserRoles == "Customer")
-                //{
-                //    user.Customer = new Customer();
-                //}
 
                 if (result.Succeeded)
                 {

@@ -300,6 +300,18 @@
     <Compile Include="Migrations\201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.Designer.cs">
       <DependentUpon>201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806081251397_addingUserIdToEmployeeAsFK.cs" />
+    <Compile Include="Migrations\201806081251397_addingUserIdToEmployeeAsFK.Designer.cs">
+      <DependentUpon>201806081251397_addingUserIdToEmployeeAsFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806081354563_addedRegisterEmployeeViewModelForAdminRole.cs" />
+    <Compile Include="Migrations\201806081354563_addedRegisterEmployeeViewModelForAdminRole.Designer.cs">
+      <DependentUpon>201806081354563_addedRegisterEmployeeViewModelForAdminRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806081604406_refreshMigrations6.cs" />
+    <Compile Include="Migrations\201806081604406_refreshMigrations6.Designer.cs">
+      <DependentUpon>201806081604406_refreshMigrations6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -479,6 +491,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.resx">
       <DependentUpon>201806071816509_RemovedRequirementForUserRolefromRegisterViewModelBecauseWhyWouldAnEmployeeNeedToRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806081251397_addingUserIdToEmployeeAsFK.resx">
+      <DependentUpon>201806081251397_addingUserIdToEmployeeAsFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806081354563_addedRegisterEmployeeViewModelForAdminRole.resx">
+      <DependentUpon>201806081354563_addedRegisterEmployeeViewModelForAdminRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806081604406_refreshMigrations6.resx">
+      <DependentUpon>201806081604406_refreshMigrations6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

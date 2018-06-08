@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Linq;
 using TrashCollector.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector.Startup))]
@@ -26,18 +27,17 @@ namespace TrashCollector
             if (!roleManager.RoleExists("Admin"))
             {
                 // first we create Admin role
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
+                //var role = new IdentityRole();
+                //role.Name = "Admin";
+                //roleManager.Create(role);
 
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
                 user.UserName = "ckloskey";
                 user.Email = "ckloskey@gmail.com";
-
-                string userPWD = "C@mer1ca";
-
+                string userPWD = "password";
+                user.UserRole = "Admin";
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin   

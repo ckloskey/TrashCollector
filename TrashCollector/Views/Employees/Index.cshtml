@@ -1,4 +1,4 @@
-﻿@model TrashCollector.Models.Employee
+﻿@model IEnumerable<TrashCollector.Models.Employee>
 
 @{
     ViewBag.Title = "Index";
@@ -11,7 +11,7 @@
         <hr />
     </div>
  <table>
-            @*@foreach (var item in Model) {
+            @foreach (var item in Model) {
             <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
@@ -31,6 +31,6 @@
                             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
                         </td>
                     </tr>
-                }*@
+                }
 
 </table>
