@@ -21,7 +21,12 @@ namespace TrashCollector.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            return View();
+            var model = (
+                from customers in db.Customers
+                where customers.PickupDay.Equals(DateTime.Now.DayOfWeek.ToString())
+                select customers
+                ).ToList();
+            return View(model);
         }
 
         // GET: Employees/Details/5
