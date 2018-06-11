@@ -98,7 +98,7 @@ namespace TrashCollector.Controllers
                     else if (user.UserRole == "Employee")
                     {
                         var employee = db.Employees.FirstOrDefault(c => c.UserId == user.Id);
-                        return RedirectToAction("Details", "Employees", new { id = employee.Id });
+                        return RedirectToAction("Index", "Employees", new { id = employee.Id });
                     }
                     else
                     {

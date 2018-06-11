@@ -147,12 +147,4 @@ namespace TrashCollector.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
-
-    public class DailyCustomerList
-    {
-        public string CustomerAddress { get; set; }
-        public string CustomerZipCode { get; set; }
-        public DayOfWeek DayOfWeek{ get; set; }
-        public bool PickupConfirmed { get; set; }
-    }
 }

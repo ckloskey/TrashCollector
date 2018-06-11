@@ -312,9 +312,14 @@
     <Compile Include="Migrations\201806081604406_refreshMigrations6.Designer.cs">
       <DependentUpon>201806081604406_refreshMigrations6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806091504043_refreshMigrations7.cs" />
+    <Compile Include="Migrations\201806091504043_refreshMigrations7.Designer.cs">
+      <DependentUpon>201806091504043_refreshMigrations7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerListViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -673,6 +678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806081604406_refreshMigrations6.resx">
       <DependentUpon>201806081604406_refreshMigrations6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806091504043_refreshMigrations7.resx">
+      <DependentUpon>201806091504043_refreshMigrations7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

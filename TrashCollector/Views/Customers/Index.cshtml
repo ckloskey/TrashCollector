@@ -8,7 +8,26 @@
 {
 
 <table>
-
+    <tr>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.PickupDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => modelItem.NextPickup)
+        </th>
+    </tr>
     @foreach (var item in Model)
     {
         <tr>
@@ -22,19 +41,10 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PickupDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountBalance)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NextPickup)
