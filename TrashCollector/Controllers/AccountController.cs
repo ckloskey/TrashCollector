@@ -235,7 +235,7 @@ namespace TrashCollector.Controllers
 
         private void MakeFirstWorkOrder(Customer newCustomer)
         {
-            WorkOrder firstWorkOrder = new WorkOrder
+            WorkOrder firstWorkOrder = new WorkOrder()
             {
                 CustomerId = newCustomer.Id,
                 ScheduledPickup = Convert.ToDateTime(newCustomer.NextPickup),
@@ -243,7 +243,7 @@ namespace TrashCollector.Controllers
                 ServicePaidFor = false
             };
             db.WorkOrders.Add(firstWorkOrder);
-            db.SaveChangesAsync();
+            db.SaveChanges();
         }
 
         public static DateTime GetNextWeekday(DateTime start, DayOfWeek day)

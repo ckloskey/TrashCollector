@@ -14,34 +14,29 @@ namespace TrashCollector.Controllers
     public class CustomersController : Controller
     {
         private ApplicationDbContext db;
-        private Customer activeCustomer;
-        public CustomersController(int? id)
+        Customer activeCustomer;
+        public CustomersController()
         {
             db = new ApplicationDbContext();
-            activeCustomer = db.Customers.Find(id);
-            MakeNextWorkOrder(activeCustomer);
         }
 
-        private void MakeNextWorkOrder(Customer activeCustomer)
+        private void MakeNextWorkOrder(int? id)
         {
-            if (Convert.ToDateTime(activeCustomer.NextPickup) < DateTime.Today)
+            activeCustomer = db.Customers.Find(id);
+            WorkOrder newOrder = new WorkOrder()
             {
-                WorkOrder newOrder = new WorkOrder()
-                {
-                    CustomerId = activeCustomer.Id,
-                    ScheduledPickup = AccountController.GetNextWeekday(DateTime.Today, activeCustomer.PickupDay),
-                    PickupCompleted = false,
-                    ServicePaidFor = false
-                };
-                db.WorkOrders.Add(newOrder);
-                db.SaveChanges();
-            }
+                CustomerId = activeCustomer.Id,
+                ScheduledPickup = AccountController.GetNextWeekday(DateTime.Today, activeCustomer.PickupDay),
+                PickupCompleted = false,
+                ServicePaidFor = false
+            };
+            db.WorkOrders.Add(newOrder);
+            db.SaveChanges();
         }
 
         // GET: Customers
         public ActionResult Index()
         {
-            
             return View();
         }
 
@@ -57,6 +52,11 @@ namespace TrashCollector.Controllers
             {
                 return HttpNotFound();
             }
+            if (Convert.ToDateTime(activeCustomer.NextPickup) < DateTime.Today)
+            {
+                MakeNextWorkOrder(id);
+            }
+                
             return View(customer);
         }
 
@@ -98,6 +98,12 @@ namespace TrashCollector.Controllers
             return View(customer);
         }
 
+        public void SkipNextPickUp(int? id)
+        {
+            activeCustomer = db.Customers.Find(id);
+            var orderToSkip = db.WorkOrders.Where(a => a.CustomerId == id && a.ScheduledPickup == activeCustomer.NextPickup).First();
+            db.WorkOrders.Remove(orderToSkip);
+        }
         // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

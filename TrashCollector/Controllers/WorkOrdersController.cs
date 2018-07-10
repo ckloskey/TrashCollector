@@ -17,7 +17,7 @@ namespace TrashCollector.Controllers
         // GET: WorkOrders
         public ActionResult Index()
         {
-            var workOrders = db.WorkOrders.Include(w => w.Customer).Include(w => w.Employee);
+            var workOrders = db.WorkOrders.Include(w => w.Customer).Where(a => a.PickupCompleted == false);
             return View(workOrders.ToList());
         }
 
@@ -59,7 +59,7 @@ namespace TrashCollector.Controllers
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Address", workOrder.CustomerId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
+            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
             return View(workOrder);
         }
 
@@ -76,7 +76,7 @@ namespace TrashCollector.Controllers
                 return HttpNotFound();
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Address", workOrder.CustomerId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
+            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
             return View(workOrder);
         }
 
@@ -94,7 +94,7 @@ namespace TrashCollector.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Address", workOrder.CustomerId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
+            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Login", workOrder.EmployeeId);
             return View(workOrder);
         }
 

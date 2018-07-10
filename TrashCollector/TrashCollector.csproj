@@ -316,6 +316,14 @@
     <Compile Include="Migrations\201806091504043_refreshMigrations7.Designer.cs">
       <DependentUpon>201806091504043_refreshMigrations7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807101551519_addedStuff.cs" />
+    <Compile Include="Migrations\201807101551519_addedStuff.Designer.cs">
+      <DependentUpon>201807101551519_addedStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807101632086_droppingFKinWorkOrderModel.cs" />
+    <Compile Include="Migrations\201807101632086_droppingFKinWorkOrderModel.Designer.cs">
+      <DependentUpon>201807101632086_droppingFKinWorkOrderModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -681,6 +689,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806091504043_refreshMigrations7.resx">
       <DependentUpon>201806091504043_refreshMigrations7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807101551519_addedStuff.resx">
+      <DependentUpon>201807101551519_addedStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807101632086_droppingFKinWorkOrderModel.resx">
+      <DependentUpon>201807101632086_droppingFKinWorkOrderModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
