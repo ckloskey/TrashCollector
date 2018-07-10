@@ -203,9 +203,10 @@ namespace TrashCollector.Controllers
                         customer.Address = user.Address;
                         customer.ZipCode = user.ZipCode;
                         customer.PickupDay = DayOfWeek.Monday;
-                        customer.NextPickup = GetNextWeekday(DateTime.Today.AddDays(1), DayOfWeek.Monday).ToString("{0:MM/dd/yyyy}");
+                        customer.NextPickup = GetNextWeekday(DateTime.Today.AddDays(1), DayOfWeek.Monday);
                         db.Customers.Add(customer);
                         db.SaveChanges();
+                        MakeFirstWorkOrder(customer);
                         return RedirectToAction("Details", "Customers", new { id = customer.Id });
                         //Login(LoginViewModel model, string returnUrl)
                     }
@@ -230,6 +231,19 @@ namespace TrashCollector.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private void MakeFirstWorkOrder(Customer newCustomer)
+        {
+            WorkOrder firstWorkOrder = new WorkOrder
+            {
+                CustomerId = newCustomer.Id,
+                ScheduledPickup = Convert.ToDateTime(newCustomer.NextPickup),
+                PickupCompleted = false,
+                ServicePaidFor = false
+            };
+            db.WorkOrders.Add(firstWorkOrder);
+            db.SaveChangesAsync();
         }
 
         public static DateTime GetNextWeekday(DateTime start, DayOfWeek day)

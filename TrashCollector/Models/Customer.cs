@@ -26,7 +26,7 @@ namespace TrashCollector.Models
         public int AccountBalance { get; set; }
         //@Html.TextBoxFor(m => m.StartDate, "{0:MM/dd/yyyy}", new { @class = "form-control default-date-picker" }) might be handy
         [DisplayFormat(DataFormatString = "{0:MM / dd / yyyy}", ApplyFormatInEditMode = true)]
-        public string NextPickup { get; set; }
+        public DateTime NextPickup { get; set; }
         public string UserId { get; set; }
     }
 }

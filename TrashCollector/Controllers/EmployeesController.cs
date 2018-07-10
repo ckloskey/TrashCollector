@@ -21,11 +21,7 @@ namespace TrashCollector.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            //var model = new CustomerListViewModel
-            //{
-            //    Customer = db.Customers
-            //};
-            var model = db.Customers.ToList();
+            var model = db.Customers.Where(a => a.PickupDay == DateTime.Now.DayOfWeek);
             return View(model);
         }
 
@@ -60,7 +56,6 @@ namespace TrashCollector.Controllers
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
-                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

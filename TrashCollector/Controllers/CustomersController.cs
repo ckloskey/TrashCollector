@@ -14,9 +14,28 @@ namespace TrashCollector.Controllers
     public class CustomersController : Controller
     {
         private ApplicationDbContext db;
-        public CustomersController()
+        private Customer activeCustomer;
+        public CustomersController(int? id)
         {
             db = new ApplicationDbContext();
+            activeCustomer = db.Customers.Find(id);
+            MakeNextWorkOrder(activeCustomer);
+        }
+
+        private void MakeNextWorkOrder(Customer activeCustomer)
+        {
+            if (Convert.ToDateTime(activeCustomer.NextPickup) < DateTime.Today)
+            {
+                WorkOrder newOrder = new WorkOrder()
+                {
+                    CustomerId = activeCustomer.Id,
+                    ScheduledPickup = AccountController.GetNextWeekday(DateTime.Today, activeCustomer.PickupDay),
+                    PickupCompleted = false,
+                    ServicePaidFor = false
+                };
+                db.WorkOrders.Add(newOrder);
+                db.SaveChanges();
+            }
         }
 
         // GET: Customers
@@ -88,7 +107,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
-                customer.NextPickup = AccountController.GetNextWeekday(DateTime.Today.AddDays(1), customer.PickupDay).ToString("{0:MM/dd/yyyy}");
+                customer.NextPickup = AccountController.GetNextWeekday(DateTime.Today.AddDays(1), customer.PickupDay);
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", customer);
