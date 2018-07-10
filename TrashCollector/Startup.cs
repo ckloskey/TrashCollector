@@ -13,7 +13,7 @@ namespace TrashCollector
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesandUsers();
+            //CreateRolesandUsers();
         }
         private void CreateRolesandUsers()
         {
@@ -26,12 +26,9 @@ namespace TrashCollector
             // In Startup i am creating first Admin Role and creating a default Admin User
             if (!roleManager.RoleExists("Admin"))
             {
-                // first we create Admin role
-                //var role = new IdentityRole();
-                //role.Name = "Admin";
-                //roleManager.Create(role);
-
-                //Here we create a Admin super user who will maintain the website                  
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
 
                 var user = new ApplicationUser();
                 user.UserName = "ckloskey";
@@ -40,15 +37,14 @@ namespace TrashCollector
                 user.UserRole = "Admin";
                 var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
+                //Add default User to Role Admin
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
-
                 }
             }
 
-            // creating Creating Employee role    
+            // creating Creating Employee and customer role    
             if (!roleManager.RoleExists("Employee"))
             {
                 var role = new IdentityRole();
